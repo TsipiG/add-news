@@ -1,24 +1,21 @@
-import React from 'react';
-import './App.css';
+import React,{ useState } from 'react';
+import './App.scss';
+import { Popup } from './components/popup/Popup'
 
 function App() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [startDate, setStartDate] = useState(new Date());
+  const [inputs, setInputs] = useState({});
+
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>ADD NEWS COMPONENT</h1>
+      <div className='News list'></div>
+      <div className='add-news-btn'><button onClick={() => setIsPopupOpen(true)}>Add news</button></div>
+      {isPopupOpen && (
+        <Popup isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen}/>
+      )}
     </div>
   );
 }
-
 export default App;
