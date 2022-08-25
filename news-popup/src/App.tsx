@@ -1,33 +1,81 @@
 import React, { useState } from "react";
 import "./App.scss";
 import { Popup } from "./components/popup/Popup";
+import deleteIcon from "./assets/svg/delete-icon.svg";
+import editIcon from "./assets/svg/edit-icon.svg";
+// import { ItemsList } from "./components/itemsList/ItemsList";
+interface IKeys {
+  key1: string;
+  key2: string;
+}
+interface News {
+  id: number;
+  news_title: string;
+  news_date: string;
+  news_url: string;
+}
 
-interface IKeys { key1: string; key2: string }
+const mockNews: News[] = [
+  {
+    id: 1,
+    news_title: "1st Title",
+    news_date: "August 1, 2011",
+    news_url:
+      "https://techcrunch.com/2022/07/26/if-it-walks-like-a-dog-and-barks-like-a-dog-perhaps-its-actually-a-non-security-crypto-digital-asset/",
+  },
+  {
+    id: 2,
+    news_title: "2nd Title",
+    news_date: "August 2, 2022",
+    news_url:
+      "https://techcrunch.com/2022/07/26/if-it-walks-like-a-dog-and-barks-like-a-dog-perhaps-its-actually-a-non-security-crypto-digital-asset/",
+  },
+  {
+    id: 3,
+    news_title: "3rd Title",
+    news_date: "August 3, 2033",
+    news_url:
+      "https://techcrunch.com/2022/07/26/if-it-walks-like-a-dog-and-barks-like-a-dog-perhaps-its-actually-a-non-security-crypto-digital-asset/",
+  },
+];
 
 function App() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
-  const [newsList, setNewList] = useState([]);
+  const [newsList, setNewList] = useState(mockNews);
+
+ 
 
   return (
-    <div className="App">
-      <h1>ADD NEWS COMPONENT</h1>
-      <div className="News list">
-        {/* {newList.length > 0 && ( */}
-          {/* <ul>
-            {newList?.map((item: string, b: string) => <Ikeys>(
-              <li key={b}>{item}</li>
+    // <NewsProvider>
+      <div className="App">
+        <h1>ADD NEWS COMPONENT</h1>
+        {/* <ItemsList newsList={newsList} /> */}
+        <div className="news-list">
+          <ul style={{ textAlign: "left" }}>
+            {newsList.map((item) => (
+              <li>
+                <div className="news-wrap">
+                  <p>{item.news_title}</p>
+                  <p>{item.news_date}</p>
+                  <p>{item.news_url}</p>
+                </div>
+                <div className="btns-wrap">
+                  <button className="delete-btn" onClick={()=>{alert("Delete")}}><img src={deleteIcon}/></button>
+                  <button className="edit-btn" onClick={()=> {alert("Edit")}}><img src={editIcon}/></button>
+                </div>
+              </li>
             ))}
-          </ul> */}
-        {/* } */}
+          </ul>
+        </div>
+        <div className="add-news-btn">
+          <button onClick={() => setIsPopupOpen(true)}>Add news</button>
+        </div>
+        {isPopupOpen && (
+          <Popup isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen} />
+        )}
       </div>
-      <div className="add-news-btn">
-        <button onClick={() => setIsPopupOpen(true)}>Add news</button>
-      </div>
-      {isPopupOpen && (
-        <Popup isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen} />
-      )}
-    </div>
+    // </NewsProvider>
   );
 }
 export default App;
