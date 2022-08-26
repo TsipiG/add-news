@@ -1,6 +1,10 @@
 .App {
   text-align: center;
 }
+a{
+  text-decoration: none;
+  color: inherit;
+}
 
 .react-datepicker__triangle{
   left: -50%!important;
@@ -17,13 +21,17 @@
     margin: 20px;
     li{
       border-bottom: 1px solid gray;
-      padding-bottom: 15px;
+      padding: 15px 0;
       display: flex;
       width: 100%;
       .news-wrap{
         width: 85%;
         display: flex;
         flex-direction: column;
+      }
+      .news-title{
+        color: grey;
+        font-weight: 400;  
       }
       .btns-wrap{
         width: 15%;
@@ -32,6 +40,9 @@
       button{
         background-color: transparent!important;
         border: none;
+      }
+      &:last-child{
+        border-bottom: none;
       }
     }
   } 

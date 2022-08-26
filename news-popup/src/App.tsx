@@ -3,6 +3,7 @@ import "./App.scss";
 import { Popup } from "./components/popup/Popup";
 import deleteIcon from "./assets/svg/delete-icon.svg";
 import editIcon from "./assets/svg/edit-icon.svg";
+import { itemsList } from "./components/itemsList/ItemsList.module.scss";
 // import { ItemsList } from "./components/itemsList/ItemsList";
 interface IKeys {
   key1: string;
@@ -53,13 +54,12 @@ function App() {
         {/* <ItemsList newsList={newsList} /> */}
         <div className="news-list">
           <ul style={{ textAlign: "left" }}>
-            {newsList.map((item) => (
-              <li>
-                <div className="news-wrap">
-                  <p>{item.news_title}</p>
-                  <p>{item.news_date}</p>
+            {newsList.map((item, index) => (
+              <li key={index}>
+                <a href={item.news_url} className="news-wrap">
+                  <div className="news-title"><span>{item.news_title}</span> - <span>{item.news_date}</span></div>                  
                   <p>{item.news_url}</p>
-                </div>
+                </a>
                 <div className="btns-wrap">
                   <button className="delete-btn" onClick={()=>{alert("Delete")}}><img src={deleteIcon}/></button>
                   <button className="edit-btn" onClick={()=> {alert("Edit")}}><img src={editIcon}/></button>
