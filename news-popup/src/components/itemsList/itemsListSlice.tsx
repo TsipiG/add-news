@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface NewsItem {
-  articleUrl: string;
+  url: string;
   title: string;
   date: string;
   id: number;

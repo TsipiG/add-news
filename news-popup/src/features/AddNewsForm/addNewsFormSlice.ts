@@ -1,21 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 //define the state type for our state
-interface NewsFormState {
+interface AddNewsFormState {
     title: string | null;
     date: string | null;
-    articleUrl: string | null;
+    url: string | null;
 } 
 
 //assign State type to initial State 
-const intialState:NewsFormState = { articleUrl: null, title: null, date: null }
+const intialState:AddNewsFormState = { url: null, title: null, date: new Date().toISOString() }
 
-export const newsFormSlice = createSlice({
-    name: "newsForm",
+export const addNewsFormSlice = createSlice({
+    name: "addNewsForm",
     initialState: intialState,    
     reducers: { 
-        updateArticleUrl(state, action:PayloadAction<{articleUrl:string}>) { 
-            state.articleUrl = action.payload.articleUrl
+        updateUrl(state, action:PayloadAction<{url:string}>) { 
+            state.url = action.payload.url
         },
         updateTitle(state, action:PayloadAction<{title:string}>) { 
             state.title = action.payload.title
@@ -28,4 +28,4 @@ export const newsFormSlice = createSlice({
 
 //extract the actions which are the outputs of create slice the functions = reducers 
 //Action Creators
-export const {updateArticleUrl, updateTitle, updateDate} = newsFormSlice.actions;
+export const {updateUrl, updateTitle, updateDate} = addNewsFormSlice.actions;

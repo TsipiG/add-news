@@ -16,36 +16,34 @@ export const ItemsList = () => {
 
   return (
     <div className={styles.itemsList}>
-      <div className="news-list">
-        <ul style={{ textAlign: "left" }}>
-          {itemsList.map((item, index) => (
-            <li key={index}>
-              <a href={item.articleUrl} className="news-wrap">
-                <div className="news-title">
-                  <span>{item.title}</span> - <span>{item.date}</span>
-                </div>
-                <p>{item.articleUrl}</p>
-              </a>
-              <div className="btns-wrap">
-                <button
-                  className="delete-btn"
-                  onClick={() => deleteArticle(item.id)}
-                >
-                  <img src={deleteIcon} alt="delete icon" />
-                </button>
-                <button
-                  className="edit-btn"
-                  onClick={() => {
-                    alert("Edit");
-                  }}
-                >
-                  <img src={editIcon} alt="edit icon" />
-                </button>
+      <ul style={{ textAlign: "left" }}>
+        {itemsList.map((item, index) => (
+          <li key={index}>
+            <a href={item.url} className="news-wrap">
+              <div className="news-title">
+                <span>{item.title}</span> - <span>{item.date}</span>
               </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+              <p>{item.url}</p>
+            </a>
+            <div className="btns-wrap">
+              <button
+                className="delete-btn"
+                onClick={() => deleteArticle(item.id)}
+              >
+                <img src={deleteIcon} alt="delete icon" />
+              </button>
+              <button
+                className="edit-btn"
+                onClick={() => {
+                  alert("Edit");
+                }}
+              >
+                <img src={editIcon} alt="edit icon" />
+              </button>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

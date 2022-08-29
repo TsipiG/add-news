@@ -1,29 +1,34 @@
-import React, { useState }  from "react";
-import { NewsForm } from "../newsForm/NewsForm";
-import DatePicker from "react-datepicker";
+import React  from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import closeBtn from "../../assets/svg/close.svg";
 import styles from "./Popup.module.scss";
 
 interface Props {
-  isPopupOpen: boolean;
-  setIsPopupOpen: any;
+  isOpen: boolean;
+  onClose: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-export const Popup = ({isPopupOpen,setIsPopupOpen}:Props) => {
+export const Popup = ({
+  isOpen,
+  onClose,
+  children
+}: React.PropsWithChildren<Props>) => {
+  if (!isOpen) return null
 
   return (
     <div className={styles.overlay}>
        <div className={styles.popup}>
-        <div className={styles.titlesWrap}><div>Add Article</div><button className={styles.closeBtn} onClick={() => setIsPopupOpen(false)}><img src={closeBtn} alt="close popup"/></button></div>
-          <div className={styles.popupBody}>
-            <NewsForm setIsPopupOpen={setIsPopupOpen} />
-          </div>             
+        <div className={styles.titlesWrap}>
+          <div>Add Article</div>
+          <button className={styles.closeBtn} onClick={onClose}>
+            <img src={closeBtn} alt="close popup" />
+          </button>
         </div>
-        <div className={styles.overlayBackground} onClick={() => setIsPopupOpen(false)}/>
+        <div className={styles.popupBody}>
+          {children}
+        </div>             
+      </div>
+      <button className={styles.overlayBackground} onClick={onClose} />
     </div>
   )
 }
-
-
-

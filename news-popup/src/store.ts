@@ -1,12 +1,34 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { newsFormSlice } from "./components/newsForm/newsFormSlice";
-import { itemsListSlice } from "./components/itemsList/itemsListSlice";
+import { configureStore, createSlice,PayloadAction } from "@reduxjs/toolkit";
+import { itemsListSlice } from "./components/ItemsList/itemsListSlice";
+import { addNewsFormSlice } from "./features/AddNewsForm/addNewsFormSlice";
+
+type PopupType = 'new' | 'edit'
+
+type PopupState = {type: PopupType | null}
+
+const initialState: PopupState = {type: null}
+
+const popupSlice = createSlice({
+  name: 'popupSlice',
+  initialState,
+  reducers: {
+    openPopup(state: PopupState, action: PayloadAction<{ popup: PopupType }>) {
+      state.type = action.payload.popup
+    },
+    closePopup(state: PopupState) {
+      state.type = null
+    }
+  }
+})
+
+export const {openPopup, closePopup} = popupSlice.actions
 
 //Connect/configure by connecting the slices reduces to the root reducer
 export const store = configureStore({
   reducer: {
-    newsForm: newsFormSlice.reducer,
     itemsList: itemsListSlice.reducer,
+    addNewsForm: addNewsFormSlice.reducer,
+    popup: popupSlice.reducer,
   },
 });
 

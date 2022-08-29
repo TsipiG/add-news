@@ -3,12 +3,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { State } from "../../store";
-import { updateArticleUrl, updateDate, updateTitle } from "./newsFormSlice";
 import styles from "./NewsForm.module.scss";
 import DatePicker from "react-datepicker";
 import { Button } from "../shared/button/button";
 // import { ruTranslations } from "stream-chat-react";
-import { addNewsItem } from "../itemsList/itemsListSlice";
+import { addNewsItem } from "../ItemsList/itemsListSlice";
 
 // TODO:
 // to be able to edit article you need to create 3 components
@@ -25,78 +24,38 @@ import { addNewsItem } from "../itemsList/itemsListSlice";
 //4. API call to our endpoint
 
 interface Props {
-  setIsPopupOpen: any;
+  url?: string
+  title?: string
+  date?: string
+  handleUrlChange: (url: string) => void
+  handleTitleChange: (title: string) => void
+  handleDateChange: (date: string) => void
+  handleSubmit: () => void
 }
 
-export const NewsForm = ({ setIsPopupOpen }: Props) => {
-  // const urlValidator (url:string) =>{
-  //     const regex = new RegExp('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?');
-  //     return regex.test(url);
-  // }
-
-  const dispatch = useDispatch();
-
-  //helps to get the data from the state - accepts selector function
-  const articleUrl = useSelector((state: State) => state.newsForm.articleUrl);
-  const title = useSelector((state: State) => state.newsForm.title);
-  const date = useSelector((state: State) => state.newsForm.date);
-
-  // const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
-  //   event.preventDefault();
-  //   if (articleUrl && date && title) {
-  //     dispatch(
-  //       addNewsItem({
-  //         articleUrl,
-  //         date,
-  //         title,
-  //       })
-  //     );
-  //   }
-  //   setIsPopupOpen(false);
-  // };
-
-  const handleSubmit = () => {
-    if (articleUrl && date && title) {
-      dispatch(
-        addNewsItem({
-          articleUrl,
-          date,
-          title,
-        })
-      );
-    }
-    setIsPopupOpen(false);
-  };
-
-  const handleArticleUrlChange = (articleUrl: string) => {
-    dispatch(updateArticleUrl({ articleUrl }));
-  };
-
-  const handleDateChange = (date: string) => {
-    dispatch(updateDate({ date }));
-  };
-
-  const handleTitleChange = (title: string) => {
-    dispatch(updateTitle({ title }));
-  };
-
+export const NewsForm = ({
+  handleUrlChange,
+  handleTitleChange,
+  handleDateChange,
+  url,
+  title,
+  date,
+  handleSubmit
+}: Props) => {
   return (
-    // <form
-    //   onSubmit={handleSubmit}
-    // >
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        handleSubmit();
+        // handleSubmit();
       }}
     >
       <div className={styles.inputContainer}>
         <div className={styles.inputLabel}>News Item URL *</div>
         <input
-          id="articleUrl"
+          value={url}
           type="input"
-          placeholder="Pase Link"
-          onChange={(event) => handleArticleUrlChange(event.target.value)}
+          placeholder="Paste Link"
+          onChange={(event) => handleUrlChange(event.target.value)}
         />
         <div className={styles.errorLabel}>Please enter valid values</div>
       </div>
@@ -112,6 +71,7 @@ export const NewsForm = ({ setIsPopupOpen }: Props) => {
       <div className={styles.inputContainer}>
         <div className={styles.inputLabel}>Article Title *</div>
         <textarea
+          value={title}
           id="articleSummary"
           placeholder="Type article summary here..."
           onChange={(event) => handleTitleChange(event.target.value)}
@@ -123,12 +83,9 @@ export const NewsForm = ({ setIsPopupOpen }: Props) => {
       <div className={styles.inputContainer}></div>
       <div className={styles.btnsContainer}>
         <Button
-          text={"Save"}
-          onClick={() => {
-            handleSubmit();
-          }}
+          text="SAVE"
+          onClick={handleSubmit}
         />
-        {/* <Button text="SAVE" type="submit" onClick={handleSubmit}  /> */}
       </div>
     </form>
   );
