@@ -1,10 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./ItemsList.module.scss";
-import { State } from "../../store";
+import { openPopup, State } from "../../store";
 import deleteIcon from "../../assets/svg/delete-icon.svg";
 import editIcon from "../../assets/svg/edit-icon.svg";
 import { deleteNewsItem } from "./itemsListSlice";
+import { editNewsForm } from "../../features/EditNewsForm/editNewsFormSlice";
 
 export const ItemsList = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,11 @@ export const ItemsList = () => {
 
   const deleteArticle = (id: number) => {
     dispatch(deleteNewsItem({ id }));
+  };
+
+  const editArticle = (id: number) => {
+    dispatch(openPopup({ popup: "edit" }));
+    dispatch(editNewsForm({ selectedItemId: id }));
   };
 
   return (
@@ -32,12 +38,7 @@ export const ItemsList = () => {
               >
                 <img src={deleteIcon} alt="delete icon" />
               </button>
-              <button
-                className="edit-btn"
-                onClick={() => {
-                  alert("Edit");
-                }}
-              >
+              <button className="edit-btn" onClick={() => editArticle(item.id)}>
                 <img src={editIcon} alt="edit icon" />
               </button>
             </div>

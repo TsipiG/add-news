@@ -24,14 +24,14 @@ import { addNewsItem } from "../ItemsList/itemsListSlice";
 //4. API call to our endpoint
 
 interface Props {
-  url?: string
-  title?: string
-  date?: string
+  url?: string | null;
+  title?: string | null;
+  date?: string | null;
   isValidUrl?: boolean;
-  handleUrlChange: (url: string) => void
-  handleTitleChange: (title: string) => void
-  handleDateChange: (date: string) => void
-  handleSubmit: () => void
+  handleUrlChange: (url: string) => void;
+  handleTitleChange: (title: string) => void;
+  handleDateChange: (date: string) => void;
+  handleSubmit: () => void;
 }
 
 export const NewsForm = ({
@@ -54,14 +54,14 @@ export const NewsForm = ({
       <div className={styles.inputContainer}>
         <div className={styles.inputLabel}>News Item URL *</div>
         <input
-          value={url}
+          value={url!}
           type="input"
           placeholder="Paste Link"
           onChange={(event) => handleUrlChange(event.target.value)}
         />
-        {!isValidUrl && 
+        {!isValidUrl && (
           <div className={styles.errorLabel}>Please enter valid values</div>
-        }
+        )}
       </div>
       <div className={styles.inputContainer}>
         <div className={styles.inputLabel}>Date *</div>
@@ -75,7 +75,7 @@ export const NewsForm = ({
       <div className={styles.inputContainer}>
         <div className={styles.inputLabel}>Article Title *</div>
         <textarea
-          value={title}
+          value={title!}
           id="articleSummary"
           placeholder="Type article summary here..."
           onChange={(event) => handleTitleChange(event.target.value)}
@@ -86,10 +86,7 @@ export const NewsForm = ({
       </div>
       <div className={styles.inputContainer}></div>
       <div className={styles.btnsContainer}>
-        <Button
-          text="SAVE"
-          onClick={handleSubmit}
-        />
+        <Button text="SAVE" onClick={handleSubmit} />
       </div>
     </form>
   );
