@@ -17,7 +17,7 @@ import { addNewsItem } from "../ItemsList/itemsListSlice";
 // 3. EditNewsForm (handles all logic needed to edit news and passes neede propties to NewsForm)
 //    EditNewsForm will render NewsForm
 
-//Tsipi
+//Important
 //1. Input Validation
 //2. Datepicker only 5 last years.
 //3. API call to embedly - iframly
@@ -27,6 +27,7 @@ interface Props {
   url?: string
   title?: string
   date?: string
+  isValidUrl?: boolean;
   handleUrlChange: (url: string) => void
   handleTitleChange: (title: string) => void
   handleDateChange: (date: string) => void
@@ -40,6 +41,7 @@ export const NewsForm = ({
   url,
   title,
   date,
+  isValidUrl,
   handleSubmit
 }: Props) => {
   return (
@@ -57,7 +59,9 @@ export const NewsForm = ({
           placeholder="Paste Link"
           onChange={(event) => handleUrlChange(event.target.value)}
         />
-        <div className={styles.errorLabel}>Please enter valid values</div>
+        {!isValidUrl && 
+          <div className={styles.errorLabel}>Please enter valid values</div>
+        }
       </div>
       <div className={styles.inputContainer}>
         <div className={styles.inputLabel}>Date *</div>
