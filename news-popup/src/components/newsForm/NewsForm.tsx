@@ -1,13 +1,10 @@
 import "react-datepicker/dist/react-datepicker.css";
 
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { State } from "../../store";
 import styles from "./NewsForm.module.scss";
 import DatePicker from "react-datepicker";
 import { Button } from "../shared/button/button";
 // import { ruTranslations } from "stream-chat-react";
-import { addNewsItem } from "../ItemsList/itemsListSlice";
 
 // TODO:
 // to be able to edit article you need to create 3 components
@@ -27,7 +24,7 @@ interface Props {
   url?: string | null;
   title?: string | null;
   date?: string | null;
-  isValidUrl?: boolean;
+  errorUrl?: string | null;
   handleUrlChange: (url: string) => void;
   handleTitleChange: (title: string) => void;
   handleDateChange: (date: string) => void;
@@ -41,7 +38,7 @@ export const NewsForm = ({
   url,
   title,
   date,
-  isValidUrl,
+  errorUrl,
   handleSubmit
 }: Props) => {
   return (
@@ -59,8 +56,8 @@ export const NewsForm = ({
           placeholder="Paste Link"
           onChange={(event) => handleUrlChange(event.target.value)}
         />
-        {!isValidUrl && (
-          <div className={styles.errorLabel}>Please enter valid values</div>
+        {errorUrl && (
+          <div className={styles.errorLabel}>{errorUrl}</div>
         )}
       </div>
       <div className={styles.inputContainer}>
@@ -70,6 +67,7 @@ export const NewsForm = ({
           onChange={(date: Date) => handleDateChange(date.toISOString())}
           dateFormat="MMMM d, yyyy"
           className="news-date"
+          minDate={new Date("2022/08/30")}
         />
       </div>
       <div className={styles.inputContainer}>
