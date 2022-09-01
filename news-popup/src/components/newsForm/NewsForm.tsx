@@ -5,6 +5,7 @@ import styles from "./NewsForm.module.scss";
 import DatePicker from "react-datepicker";
 import { Button } from "../shared/button/button";
 // import { ruTranslations } from "stream-chat-react";
+import {sub, format} from 'date-fns'
 
 // TODO:
 // to be able to edit article you need to create 3 components
@@ -25,6 +26,8 @@ interface Props {
   title?: string | null;
   date?: string | null;
   errorUrl?: string | null;
+  errorTitle?: string | null;
+  formTitle?: string;
   handleUrlChange: (url: string) => void;
   handleTitleChange: (title: string) => void;
   handleDateChange: (date: string) => void;
@@ -39,6 +42,8 @@ export const NewsForm = ({
   title,
   date,
   errorUrl,
+  errorTitle,
+  formTitle,
   handleSubmit
 }: Props) => {
   return (
@@ -48,6 +53,7 @@ export const NewsForm = ({
         // handleSubmit();
       }}
     >
+      <div className={styles.formTitleBold}>{formTitle}</div>
       <div className={styles.inputContainer}>
         <div className={styles.inputLabel}>News Item URL *</div>
         <input
@@ -64,23 +70,28 @@ export const NewsForm = ({
         <div className={styles.inputLabel}>Date *</div>
         <DatePicker
           selected={date ? new Date(date) : new Date()}
-          onChange={(date: Date) => handleDateChange(date.toISOString())}
+          showPopperArrow={false}
+          onChange={(date: Date) => {
+            handleDateChange(date.toISOString())
+          }}
           dateFormat="MMMM d, yyyy"
           className="news-date"
-          minDate={new Date("2022/08/30")}
+          minDate={sub(new Date(), {
+            years: 5
+          })}
         />
       </div>
       <div className={styles.inputContainer}>
         <div className={styles.inputLabel}>Article Title *</div>
-        <textarea
+        <textarea          
           value={title!}
           id="articleSummary"
           placeholder="Type article summary here..."
           onChange={(event) => handleTitleChange(event.target.value)}
         />
-        <div className={styles.errorLabel}>
-          Please enter the title of the article
-        </div>
+        {errorTitle && (
+          <div className={styles.errorLabel}>{errorTitle}</div>
+        )}
       </div>
       <div className={styles.inputContainer}></div>
       <div className={styles.btnsContainer}>

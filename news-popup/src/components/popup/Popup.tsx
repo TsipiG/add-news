@@ -19,8 +19,8 @@ export const Popup = ({
     <div className={styles.overlay}>
        <div className={styles.popup}>
         <div className={styles.titlesWrap}>
-          <div>Add Article</div>
-          <button className={styles.closeBtn} onClick={onClose}>
+            <div></div>
+            <button className={styles.closeBtn} onClick={onClose}>
             <img src={closeBtn} alt="close popup" />
           </button>
         </div>
