@@ -95,7 +95,7 @@ export const NewsForm = ({
       </div>
       <div className={styles.inputContainer}></div>
       <div className={styles.btnsContainer}>
-        <Button text="SAVE" onClick={handleSubmit} />
+        <Button text="save" onClick={handleSubmit} />
       </div>
     </form>
   );
