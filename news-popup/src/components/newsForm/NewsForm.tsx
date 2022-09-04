@@ -4,24 +4,10 @@ import React from "react";
 import styles from "./NewsForm.module.scss";
 import DatePicker from "react-datepicker";
 import { Button } from "../shared/button/button";
-// import { ruTranslations } from "stream-chat-react";
-import {sub, format} from 'date-fns'
-
-// TODO:
-// to be able to edit article you need to create 3 components
-// 1. NewsForm (base component that hols html and accepts props)
-// 2. AddNewsForm (handles all logic needed to add news and passes needed propties to NewsForm)
-//    AddNewsForm will render NewsForm
-// 3. EditNewsForm (handles all logic needed to edit news and passes neede propties to NewsForm)
-//    EditNewsForm will render NewsForm
-
-//Important
-//1. Input Validation
-//2. Datepicker only 5 last years.
-//3. API call to embedly - iframly
-//4. API call to our endpoint
+import {sub} from 'date-fns'
 
 interface Props {
+  isLoading?: boolean;
   url?: string | null;
   title?: string | null;
   date?: string | null;
@@ -35,6 +21,7 @@ interface Props {
 }
 
 export const NewsForm = ({
+  isLoading,
   handleUrlChange,
   handleTitleChange,
   handleDateChange,
@@ -44,13 +31,12 @@ export const NewsForm = ({
   errorUrl,
   errorTitle,
   formTitle,
-  handleSubmit
+  handleSubmit,
 }: Props) => {
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        // handleSubmit();
       }}
     >
       <div className={styles.formTitleBold}>{formTitle}</div>
@@ -62,9 +48,8 @@ export const NewsForm = ({
           placeholder="Paste Link"
           onChange={(event) => handleUrlChange(event.target.value)}
         />
-        {errorUrl && (
-          <div className={styles.errorLabel}>{errorUrl}</div>
-        )}
+        {isLoading && <div>Loading...</div>}
+        {errorUrl && <div className={styles.errorLabel}>{errorUrl}</div>}
       </div>
       <div className={styles.inputContainer}>
         <div className={styles.inputLabel}>Date *</div>
@@ -89,9 +74,7 @@ export const NewsForm = ({
           placeholder="Type article summary here..."
           onChange={(event) => handleTitleChange(event.target.value)}
         />
-        {errorTitle && (
-          <div className={styles.errorLabel}>{errorTitle}</div>
-        )}
+        {errorTitle && <div className={styles.errorLabel}>{errorTitle}</div>}
       </div>
       <div className={styles.inputContainer}></div>
       <div className={styles.btnsContainer}>
