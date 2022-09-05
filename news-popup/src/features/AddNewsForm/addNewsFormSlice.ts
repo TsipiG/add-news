@@ -10,7 +10,6 @@ interface AddNewsFormState {
 //assign State type to initial State 
 const intialState:AddNewsFormState = { url: null, title: null, date: new Date().toISOString() }
 
-
 export const addNewsFormSlice = createSlice({
     name: "addNewsForm",
     initialState: intialState,    
