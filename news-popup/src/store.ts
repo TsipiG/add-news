@@ -1,7 +1,8 @@
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { itemsListSlice } from "./components/ItemsList/itemsListSlice";
-import { addNewsFormSlice } from "./features/AddNewsForm/addNewsFormSlice";
+import { addNewsFormSlice } from "./features/AddNewsForm/addNewsForm.slice";
 import { editNewsFormSlice } from "./features/EditNewsForm/editNewsFormSlice";
+import { companyNewsSlice } from "./features/Company/Company.slice";
 
 type PopupType = "new" | "edit";
 
@@ -30,7 +31,8 @@ export const store = configureStore({
     itemsList: itemsListSlice.reducer,
     addNewsForm: addNewsFormSlice.reducer,
     editNewsForm: editNewsFormSlice.reducer,
-    popup: popupSlice.reducer
+    popup: popupSlice.reducer,
+    companyNews: companyNewsSlice.reducer,
   }
 });
 

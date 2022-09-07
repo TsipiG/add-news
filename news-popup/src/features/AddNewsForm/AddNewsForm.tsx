@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { closePopup, State } from "../../store";
+import { closePopup, State, store } from "../../store";
 import { NewsForm } from "../../components/NewsForm/NewsForm";
-import { updateDate, updateTitle, updateUrl } from "./addNewsFormSlice";
+import { updateDate, updateTitle, updateUrl } from "./addNewsForm.slice";
 import { addNewsItem } from "../../components/ItemsList/itemsListSlice";
 import { isValidUrl } from "../../utils/isValidUrl";
 import { useFetchArticleData } from "../../hooks/useFetchArticleData";
+import { postNews } from "./addNewsForm.thunk";
 
 export const AddNewsForm = () => {
   const dispatch = useDispatch();
@@ -35,18 +36,17 @@ export const AddNewsForm = () => {
       setErrorTitle("Please type a title");
       return;
    } 
-    if (date && title) {        
-      dispatch(
-        addNewsItem({
+    if (date && title) {   
+      store.dispatch(
+        postNews({
           url,
           date,
           title,
+          companyId: "agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAgL6qvKcJDA",
         })
-      );
-      //Clearing form variables afer submit           
+      );     
       dispatch(updateUrl({url: ""}));  
       dispatch(updateTitle({title: ""}));    
-      // add close handler 
       dispatch(closePopup())
     }
   };
@@ -65,20 +65,21 @@ export const AddNewsForm = () => {
 
   return (
     <NewsForm 
-    isLoading={isLoading}
-    title={title}
-    formTitle={"Add an Article"} 
-    errorTitle={errorTitle}
-    errorUrl={errorUrl} 
-    handleDateChange={handleDateChange} 
-    handleTitleChange={handleTitleChange} 
-    handleUrlChange={handleUrlChange} 
-    handleSubmit={handleSubmit} 
-    onArticleTitleFetch={() => {
-      if (url) {
-        fetchArticle(url)
-      }
-    }}
+      url={url}
+      isLoading={isLoading}
+      title={title}
+      formTitle={"Add an Article"} 
+      errorTitle={errorTitle}
+      errorUrl={errorUrl} 
+      handleDateChange={handleDateChange} 
+      handleTitleChange={handleTitleChange} 
+      handleUrlChange={handleUrlChange} 
+      handleSubmit={handleSubmit} 
+      onArticleTitleFetch={() => {
+        if (url) {
+          fetchArticle(url)
+        }
+      }}
     />
   )
 };
