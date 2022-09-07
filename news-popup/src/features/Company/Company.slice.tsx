@@ -9,11 +9,12 @@ interface NewsItem {
 }
 
 interface ItemsListState {
-  items: NewsItem[];
+  items: NewsItem[],
+  isLoading: boolean
 }
 
 const intialState: ItemsListState = {
-  items: []
+  items: [], isLoading: false
 };
 
 export const companyNewsSlice = createSlice({
@@ -21,8 +22,13 @@ export const companyNewsSlice = createSlice({
   initialState: intialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getCompanyNews.fulfilled, (state, action: PayloadAction<NewsItem[]>) => {
-      state.items = action.payload
+    builder
+    .addCase(getCompanyNews.fulfilled, (state, action: PayloadAction<NewsItem[]>) => {
+      state.isLoading = false
+      state.items = action.payload     
+    })    
+    .addCase(getCompanyNews.pending, (state) => {
+      state.isLoading = true
     })
   }
 });
