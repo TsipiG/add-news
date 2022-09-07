@@ -47,6 +47,9 @@ export const AddNewsForm = () => {
       );     
       dispatch(updateUrl({url: ""}));  
       dispatch(updateTitle({title: ""}));    
+      dispatch( getCompanyNews({
+        companyId: "agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAgL6qvKcJDA",
+      })); 
       dispatch(closePopup())
     }
   };
@@ -83,3 +86,7 @@ export const AddNewsForm = () => {
     />
   )
 };
+function getCompanyNews(arg0: { companyId: string; }): any {
+  throw new Error("Function not implemented.");
+}
+

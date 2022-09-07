@@ -1,8 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { client } from '../../client'
-
-const postNewsActionType = "addNewsForm/postNews";
-
 interface Payload {
     title: string,
     date: string,
@@ -24,7 +21,6 @@ export const postNews = createAsyncThunk(
         )
         return thunk.fulfillWithValue(response)
     } catch(e) {
-      console.log(e)
       return thunk.rejectWithValue(e)
     }
   }

@@ -20,7 +20,11 @@ const intialState: ItemsListState = {
 export const companyNewsSlice = createSlice({
   name: "companyNews",
   initialState: intialState,
-  reducers: {},
+  reducers: {
+    deleteNewsItem(state, action: PayloadAction<{ id: number }>) {
+      state.items = state.items.filter((item) => item.id !== action.payload.id);
+    },
+  },
   extraReducers: (builder) => {
     builder
     .addCase(getCompanyNews.fulfilled, (state, action: PayloadAction<NewsItem[]>) => {

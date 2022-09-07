@@ -7,14 +7,12 @@ import { editNewsForm } from "../EditNewsForm/editNewsFormSlice";
 import { getCompanyNews } from "./Company.thunks";
 import deleteIcon from "../../assets/svg/delete-icon.svg";
 import editIcon from "../../assets/svg/edit-icon.svg";
-import styles from "./ItemsList.module.scss";
+import styles from "./Company.module.scss";
 
 export const Company = () => {
   const dispatch = useDispatch();
   const itemsList = useSelector((state: State) => state.companyNews.items);
   const isLoading = useSelector((state: State) => state.companyNews.isLoading);
-
-  console.log(itemsList);
 
   const deleteArticle = (id: number) => {
     dispatch(deleteNewsItem({ id }));
