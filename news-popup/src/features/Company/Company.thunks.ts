@@ -20,16 +20,16 @@ export const getCompanyNews = createAsyncThunk(
     }
   );
 
-  // export const deleteNews = createAsyncThunk(
-  //   "addNewsForm/deleteNews",
-  //   async ({ companyId, newsId }: Payload, thunk) => {
-  //     try {
-  //         const response = await client.delete(
-  //             `/startups/${companyId}/news/${newsId}`,             
-  //         )
-  //         return thunk.fulfillWithValue(response)
-  //     } catch(e) {
-  //       return thunk.rejectWithValue(e)
-  //     }
-  //   }
-  // );
+  export const deleteNews = createAsyncThunk(
+    "addNewsForm/deleteNews",
+    async ({ companyId, newsId }: Payload, thunk) => {
+      try {
+          const response = await client.delete(
+              `/startups/${companyId}/news/${newsId}`,             
+          )
+          return thunk.fulfillWithValue(response)
+      } catch(e) {
+        return thunk.rejectWithValue(e)
+      }
+    }
+  );
