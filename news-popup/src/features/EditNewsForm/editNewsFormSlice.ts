@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface EditNewsFormState {
-  selectedItemId: number | null;
+  selectedItemId: string | null;
   title: string | null;
   url: string | null;
   date: string | null;
@@ -18,7 +18,7 @@ export const editNewsFormSlice = createSlice({
   name: "editNewsForm",
   initialState: intialState,
   reducers: {
-    editNewsForm(state, action: PayloadAction<{ selectedItemId: number }>) {
+    editNewsForm(state, action: PayloadAction<{ selectedItemId: string }>) {
       state.selectedItemId = action.payload.selectedItemId;
     },
     updateUrl(state, action: PayloadAction<{ url: string }>) {

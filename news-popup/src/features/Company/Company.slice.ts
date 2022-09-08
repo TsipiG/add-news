@@ -5,7 +5,7 @@ interface NewsItem {
   url: string;
   title: string;
   date: string;
-  id: number;
+  id: string;
 }
 
 interface ItemsListState {
@@ -21,9 +21,10 @@ export const companyNewsSlice = createSlice({
   name: "companyNews",
   initialState: intialState,
   reducers: {
-    deleteNewsItem(state, action: PayloadAction<{ id: number }>) {      
-      state.items = state.items.filter((item) => item.id !== action.payload.id);
-    },
+    // deleteNewsItem(state, action: PayloadAction<{ id: number }>) {     
+    //   //state.items = state.items.filter((item) => item.id !== action.payload.id);
+    //   state.items = state.items.filter((item) => item.id !== action.payload.id);
+    // },
   },
   extraReducers: (builder) => {
     builder

@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { closePopup, State, store } from "../../store";
 import { NewsForm } from "../../components/NewsForm/NewsForm";
 import { updateDate, updateTitle, updateUrl } from "./addNewsForm.slice";
-import { addNewsItem } from "../../components/ItemsList/itemsListSlice";
 import { isValidUrl } from "../../utils/isValidUrl";
 import { useFetchArticleData } from "../../hooks/useFetchArticleData";
 import { postNews } from "./addNewsForm.thunk";
@@ -39,27 +38,20 @@ export const AddNewsForm = () => {
    } 
     if (date && title) {   
       store.dispatch(
-        // addNewsItem({
-        //   url,
-        //   date, 
-        //   title
-        // })
-        // postNews({
-        //   url,
-        //   date,
-        //   title,
-        //   companyId: "agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAwP_k4J4KDA", //2Drops
-        // })
         postNews({
           url,
           date,
           title,
           companyId: "agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAgL6qvKcJDA",//1net.me
-        })
-      );     
+        })         
+      ).then(() => {
+        store.dispatch(
+          getCompanyNews({
+            companyId: "agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAgL6qvKcJDA"})); 
+      })
+
       dispatch(updateUrl({url: ""}));  
-      dispatch(updateTitle({title: ""}));    
-      store.dispatch(getCompanyNews({companyId: "agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAgL6qvKcJDA"})); 
+      dispatch(updateTitle({title: ""}));        
       dispatch(closePopup())
     }
   };
@@ -96,7 +88,17 @@ export const AddNewsForm = () => {
     />
   )
 };
-// function getCompanyNews(arg0: { companyId: string; }): any {
-//   throw new Error("Function not implemented.");
-// }
 
+
+
+        // addNewsItem({
+        //   url,
+        //   date, 
+        //   title
+        // })
+        // postNews({
+        //   url,
+        //   date,
+        //   title,
+        //   companyId: "agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAwP_k4J4KDA", //2Drops
+        // })
