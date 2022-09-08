@@ -1,24 +1,37 @@
 import { format } from "date-fns";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteNewsItem } from "../../components/ItemsList/itemsListSlice";
+//import { deleteNewsItem } from "../../components/ItemsList/itemsListSlice";
 import { State, openPopup, store } from "../../store";
 import { editNewsForm } from "../EditNewsForm/editNewsFormSlice";
 import { getCompanyNews } from "./Company.thunks";
 import deleteIcon from "../../assets/svg/delete-icon.svg";
 import editIcon from "../../assets/svg/edit-icon.svg";
 import styles from "./Company.module.scss";
+import { deleteNews } from "./Company.thunks";
+
+
 
 export const Company = () => {
   const dispatch = useDispatch();
   const itemsList = useSelector((state: State) => state.companyNews.items);
   const isLoading = useSelector((state: State) => state.companyNews.isLoading);
 
-  const deleteArticle = (id: number) => {
-    dispatch(deleteNewsItem({ id }));
+  const deleteArticle = (id: string) => {
+   store.dispatch(
+    deleteNews({
+        companyId: 'agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAgL6qvKcJDA',
+        newsId: id
+       })
+   ).then(()=>{
+    store.dispatch(
+      getCompanyNews({
+        companyId: "agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAgL6qvKcJDA"})); 
+
+   })
   };
 
-  const editArticle = (id: number) => {
+  const editArticle = (id: string) => {
     dispatch(openPopup({ popup: "edit" }));
     dispatch(editNewsForm({ selectedItemId: id }));
   };
@@ -26,7 +39,7 @@ export const Company = () => {
   React.useEffect(() => {
     store.dispatch(
       getCompanyNews({
-        companyId: "agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAgL6qvKcJDA",
+       companyId: "agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAgL6qvKcJDA",//1net.me
       })
     );
   }, []);

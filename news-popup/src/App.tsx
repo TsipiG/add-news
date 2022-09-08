@@ -3,11 +3,9 @@ import "./App.scss";
 import React from "react";
 import { Popup } from "./components/Popup/Popup";
 import { closePopup, openPopup, State } from "./store";
-import { ItemsList } from "./components/ItemsList/ItemsList";
 import { AddNewsForm } from "./features/AddNewsForm/AddNewsForm";
 import { useDispatch, useSelector } from "react-redux";
 import { EditNewsForm } from "./features/EditNewsForm/EditNewsForm";
-import { postNews } from './features/AddNewsForm/addNewsForm.thunk'
 import { Company } from './features/Company/Company'
 
 function App() {
@@ -19,8 +17,10 @@ function App() {
   return (
     <div className="App">
       {/* Article list feature */}
+      {/* <ItemsList /> */}
+      {/* Article list feature */}
       <h1>COMPANY</h1>
-      <Company />
+      <Company />  
       {/* Add article button feature */}
       <div className="add-news-btn">
         <button onClick={openAddNewsForm}>Add news</button>

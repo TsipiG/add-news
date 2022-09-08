@@ -3,10 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { closePopup, State, store } from "../../store";
 import { NewsForm } from "../../components/NewsForm/NewsForm";
 import { updateDate, updateTitle, updateUrl } from "./addNewsForm.slice";
-import { addNewsItem } from "../../components/ItemsList/itemsListSlice";
 import { isValidUrl } from "../../utils/isValidUrl";
 import { useFetchArticleData } from "../../hooks/useFetchArticleData";
 import { postNews } from "./addNewsForm.thunk";
+import { getCompanyNews } from "../Company/Company.thunks";
 
 export const AddNewsForm = () => {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ export const AddNewsForm = () => {
     }
   }, [data?.title, dispatch]);
 
-  const handleSubmit = () => {      
+  const handleSubmit = () => {     
     if(!url){
       setErrorUrl("Please paste a valid url");
       return;
@@ -42,14 +42,16 @@ export const AddNewsForm = () => {
           url,
           date,
           title,
-          companyId: "agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAgL6qvKcJDA",
-        })
-      );     
+          companyId: "agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAgL6qvKcJDA",//1net.me
+        })         
+      ).then(() => {
+        store.dispatch(
+          getCompanyNews({
+            companyId: "agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAgL6qvKcJDA"})); 
+      })
+
       dispatch(updateUrl({url: ""}));  
-      dispatch(updateTitle({title: ""}));    
-      dispatch( getCompanyNews({
-        companyId: "agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAgL6qvKcJDA",
-      })); 
+      dispatch(updateTitle({title: ""}));        
       dispatch(closePopup())
     }
   };
@@ -86,7 +88,17 @@ export const AddNewsForm = () => {
     />
   )
 };
-function getCompanyNews(arg0: { companyId: string; }): any {
-  throw new Error("Function not implemented.");
-}
 
+
+
+        // addNewsItem({
+        //   url,
+        //   date, 
+        //   title
+        // })
+        // postNews({
+        //   url,
+        //   date,
+        //   title,
+        //   companyId: "agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAwP_k4J4KDA", //2Drops
+        // })
