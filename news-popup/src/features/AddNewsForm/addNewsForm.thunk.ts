@@ -15,7 +15,7 @@ export const postNews = createAsyncThunk(
             `/startups/${companyId}/news`,
             {
                 "news_summary": title,
-                "news_date": "06/09/2022",
+                "news_date": date,
                 "news_url": url
             },
         )

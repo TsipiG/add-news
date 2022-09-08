@@ -20,8 +20,6 @@ export const itemsListSlice = createSlice({
   initialState: intialState,
   reducers: {
     addNewsItem(state, action: PayloadAction<Omit<NewsItem, "id">>) {
-      // INFO: id will be created in backend
-      // this is buggy
       const id = state.items.length + 1;
       const item = { ...action.payload, id };
       state.items.push(item);

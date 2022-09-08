@@ -19,8 +19,10 @@ function App() {
   return (
     <div className="App">
       {/* Article list feature */}
+      <ItemsList />
+      {/* Article list feature */}
       <h1>COMPANY</h1>
-      <Company />
+      <Company />  
       {/* Add article button feature */}
       <div className="add-news-btn">
         <button onClick={openAddNewsForm}>Add news</button>

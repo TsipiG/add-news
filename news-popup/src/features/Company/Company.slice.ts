@@ -21,7 +21,7 @@ export const companyNewsSlice = createSlice({
   name: "companyNews",
   initialState: intialState,
   reducers: {
-    deleteNewsItem(state, action: PayloadAction<{ id: number }>) {
+    deleteNewsItem(state, action: PayloadAction<{ id: number }>) {      
       state.items = state.items.filter((item) => item.id !== action.payload.id);
     },
   },

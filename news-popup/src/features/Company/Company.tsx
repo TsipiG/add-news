@@ -8,6 +8,7 @@ import { getCompanyNews } from "./Company.thunks";
 import deleteIcon from "../../assets/svg/delete-icon.svg";
 import editIcon from "../../assets/svg/edit-icon.svg";
 import styles from "./Company.module.scss";
+//import { deleteNewsItem } from "./Company.slice";
 
 export const Company = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,8 @@ export const Company = () => {
   React.useEffect(() => {
     store.dispatch(
       getCompanyNews({
-        companyId: "agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAgL6qvKcJDA",
+       companyId: "agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAgL6qvKcJDA",//1net.me
+    //   companyId: "agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAwP_k4J4KDA", //2Drops
       })
     );
   }, []);
