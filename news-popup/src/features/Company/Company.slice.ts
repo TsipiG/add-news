@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getCompanyNews } from './Company.thunks'
+import { getCompanyNews } from "./Company.thunks";
 
 interface NewsItem {
   url: string;
@@ -9,28 +9,30 @@ interface NewsItem {
 }
 
 interface ItemsListState {
-  items: NewsItem[],
-  isLoading: boolean
+  items: NewsItem[];
+  isLoading: boolean;
 }
 
 const intialState: ItemsListState = {
-  items: [], isLoading: false
+  items: [],
+  isLoading: false,
 };
 
 export const companyNewsSlice = createSlice({
   name: "companyNews",
   initialState: intialState,
-  reducers: {
-  
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
-    .addCase(getCompanyNews.fulfilled, (state, action: PayloadAction<NewsItem[]>) => {
-      state.isLoading = false
-      state.items = action.payload     
-    })    
-    .addCase(getCompanyNews.pending, (state) => {
-      state.isLoading = true
-    })
-  }
+      .addCase(
+        getCompanyNews.fulfilled,
+        (state, action: PayloadAction<NewsItem[]>) => {
+          state.isLoading = false;
+          state.items = action.payload;
+        }
+      )
+      .addCase(getCompanyNews.pending, (state) => {
+        state.isLoading = true;
+      });
+  },
 });

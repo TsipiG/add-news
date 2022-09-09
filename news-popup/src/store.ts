@@ -18,8 +18,8 @@ const popupSlice = createSlice({
     },
     closePopup(state: PopupState) {
       state.type = null;
-    }
-  }
+    },
+  },
 });
 
 export const { openPopup, closePopup } = popupSlice.actions;
@@ -31,7 +31,7 @@ export const store = configureStore({
     editNewsForm: editNewsFormSlice.reducer,
     popup: popupSlice.reducer,
     companyNews: companyNewsSlice.reducer,
-  }
+  },
 });
 
 export type State = ReturnType<typeof store.getState>;

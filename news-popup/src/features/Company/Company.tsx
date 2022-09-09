@@ -10,25 +10,26 @@ import styles from "./Company.module.scss";
 import { deleteNews } from "./Company.thunks";
 import { getCompanyId } from "../../utils/getCompanyId";
 
-
-
 export const Company = () => {
   const dispatch = useDispatch();
   const itemsList = useSelector((state: State) => state.companyNews.items);
   const isLoading = useSelector((state: State) => state.companyNews.isLoading);
 
   const deleteArticle = (id: string) => {
-   store.dispatch(
-    deleteNews({
-        companyId: getCompanyId(),
-        newsId: id
-       })
-   ).then(()=>{
-    store.dispatch(
-      getCompanyNews({
-        companyId:getCompanyId()})); 
-
-   })
+    store
+      .dispatch(
+        deleteNews({
+          companyId: getCompanyId(),
+          newsId: id,
+        })
+      )
+      .then(() => {
+        store.dispatch(
+          getCompanyNews({
+            companyId: getCompanyId(),
+          })
+        );
+      });
   };
 
   const editArticle = (id: string) => {
@@ -39,15 +40,17 @@ export const Company = () => {
   React.useEffect(() => {
     store.dispatch(
       getCompanyNews({
-       companyId: getCompanyId()
+        companyId: getCompanyId(),
       })
     );
   }, []);
 
   return (
     <>
-      {isLoading && <div className={styles.newsLoading} >LOADING NEWS FORM COMPANY...</div>}    
-      <div className={styles.itemsList}>     
+      {isLoading && (
+        <div className={styles.newsLoading}>LOADING NEWS FORM COMPANY...</div>
+      )}
+      <div className={styles.itemsList}>
         <ul className={styles.itemsListUl}>
           {itemsList.map((item, index) => (
             <li key={index}>

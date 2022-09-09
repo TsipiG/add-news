@@ -6,7 +6,7 @@ import { closePopup, openPopup, State } from "./store";
 import { AddNewsForm } from "./features/AddNewsForm/AddNewsForm";
 import { useDispatch, useSelector } from "react-redux";
 import { EditNewsForm } from "./features/EditNewsForm/EditNewsForm";
-import { Company } from './features/Company/Company'
+import { Company } from "./features/Company/Company";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ function App() {
       {/* <ItemsList /> */}
       {/* Article list feature */}
       <h1>COMPANY</h1>
-      <Company />  
+      <Company />
       {/* Add article button feature */}
       <div className="add-news-btn">
         <button onClick={openAddNewsForm}>Add news</button>
@@ -32,7 +32,7 @@ function App() {
       {/* Edit new article feature */}
       <Popup isOpen={popup.type === "edit"} onClose={closeAddNewsForm}>
         <EditNewsForm />
-      </Popup>     
+      </Popup>
     </div>
   );
 }

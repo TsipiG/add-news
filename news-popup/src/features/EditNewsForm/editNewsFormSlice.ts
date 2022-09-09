@@ -11,7 +11,7 @@ const intialState: EditNewsFormState = {
   selectedItemId: null,
   title: null,
   url: null,
-  date: null
+  date: null,
 };
 
 export const editNewsFormSlice = createSlice({
@@ -29,15 +29,11 @@ export const editNewsFormSlice = createSlice({
     },
     updateDate(state, action: PayloadAction<{ date: string }>) {
       state.date = action.payload.date;
-    }
-  }
+    },
+  },
 });
 
 //extract the actions which are the outputs of create slice the functions = reducers
 //Action Creators
-export const {
-  editNewsForm,
-  updateDate,
-  updateTitle,
-  updateUrl
-} = editNewsFormSlice.actions;
+export const { editNewsForm, updateDate, updateTitle, updateUrl } =
+  editNewsFormSlice.actions;

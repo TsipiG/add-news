@@ -19,41 +19,45 @@ export const AddNewsForm = () => {
   const { data, isLoading, fetchArticle } = useFetchArticleData(url);
 
   useEffect(() => {
-    if (data?.title) {        
+    if (data?.title) {
       dispatch(updateTitle({ title: data.title }));
     }
   }, [data?.title, dispatch]);
 
-  const handleSubmit = () => {     
-    if(!url){
+  const handleSubmit = () => {
+    if (!url) {
       setErrorUrl("Please paste a valid url");
       return;
-   } 
-   if(!isValidUrl(url)){
+    }
+    if (!isValidUrl(url)) {
       setErrorUrl("This is not a valid url");
       return;
-   } 
-   if(!title){
+    }
+    if (!title) {
       setErrorTitle("Please type a title");
       return;
-   } 
-    if (date && title) {   
-      store.dispatch(
-        postNews({
-          url,
-          date,
-          title,
-          companyId: getCompanyId(),
-        })         
-      ).then(() => {
-        store.dispatch(
-          getCompanyNews({
-            companyId: getCompanyId()})); 
-      })
+    }
+    if (date && title) {
+      store
+        .dispatch(
+          postNews({
+            url,
+            date,
+            title,
+            companyId: getCompanyId(),
+          })
+        )
+        .then(() => {
+          store.dispatch(
+            getCompanyNews({
+              companyId: getCompanyId(),
+            })
+          );
+        });
 
-      dispatch(updateUrl({url: ""}));  
-      dispatch(updateTitle({title: ""}));        
-      dispatch(closePopup())
+      dispatch(updateUrl({ url: "" }));
+      dispatch(updateTitle({ title: "" }));
+      dispatch(closePopup());
     }
   };
 
@@ -70,36 +74,34 @@ export const AddNewsForm = () => {
   };
 
   return (
-    <NewsForm 
+    <NewsForm
       url={url}
       isLoading={isLoading}
       title={title}
-      formTitle={"Add an Article"} 
+      formTitle={"Add an Article"}
       errorTitle={errorTitle}
-      errorUrl={errorUrl} 
-      handleDateChange={handleDateChange} 
-      handleTitleChange={handleTitleChange} 
-      handleUrlChange={handleUrlChange} 
-      handleSubmit={handleSubmit} 
+      errorUrl={errorUrl}
+      handleDateChange={handleDateChange}
+      handleTitleChange={handleTitleChange}
+      handleUrlChange={handleUrlChange}
+      handleSubmit={handleSubmit}
       onArticleTitleFetch={() => {
         if (url) {
-          fetchArticle(url)
+          fetchArticle(url);
         }
       }}
     />
-  )
+  );
 };
 
-
-
-        // addNewsItem({
-        //   url,
-        //   date, 
-        //   title
-        // })
-        // postNews({
-        //   url,
-        //   date,
-        //   title,
-        //   companyId: "agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAwP_k4J4KDA", //2Drops
-        // })
+// addNewsItem({
+//   url,
+//   date,
+//   title
+// })
+// postNews({
+//   url,
+//   date,
+//   title,
+//   companyId: "agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAwP_k4J4KDA", //2Drops
+// })

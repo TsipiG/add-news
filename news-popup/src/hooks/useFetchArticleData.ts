@@ -10,7 +10,7 @@ export const useFetchArticleData = (url: string | null | undefined) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const fetchArticle = async (url: string) => {
-    setData(null)
+    setData(null);
     return axios.get(url).then((response) => {
       setIsLoading(false);
       const title = parseTitleFromHTML(response.data);
@@ -20,7 +20,7 @@ export const useFetchArticleData = (url: string | null | undefined) => {
     });
   };
 
-  return { data, isLoading, fetchArticle }; 
+  return { data, isLoading, fetchArticle };
 };
 
 function parseTitleFromHTML(html: string) {

@@ -4,7 +4,7 @@ import React from "react";
 import styles from "./NewsForm.module.scss";
 import DatePicker from "react-datepicker";
 import { Button } from "../shared/button/button";
-import {sub} from 'date-fns'
+import { sub } from "date-fns";
 
 interface Props {
   isLoading?: boolean;
@@ -33,7 +33,7 @@ export const NewsForm = ({
   errorTitle,
   formTitle,
   handleSubmit,
-  onArticleTitleFetch
+  onArticleTitleFetch,
 }: Props) => {
   return (
     <form
@@ -45,8 +45,10 @@ export const NewsForm = ({
       <div className={styles.inputContainer}>
         <div className={styles.inputLabel}>
           News Item URL *
-          {onArticleTitleFetch ? <button onClick={onArticleTitleFetch}>Fetch article title</button> : null }
-        </div>        
+          {onArticleTitleFetch ? (
+            <button onClick={onArticleTitleFetch}>Fetch article title</button>
+          ) : null}
+        </div>
         <input
           value={url!}
           type="input"
@@ -62,18 +64,18 @@ export const NewsForm = ({
           selected={date ? new Date(date) : new Date()}
           showPopperArrow={false}
           onChange={(date: Date) => {
-            handleDateChange(date.toISOString())
+            handleDateChange(date.toISOString());
           }}
           dateFormat="MMMM d, yyyy"
           className="news-date"
           minDate={sub(new Date(), {
-            years: 5
+            years: 5,
           })}
         />
       </div>
       <div className={styles.inputContainer}>
         <div className={styles.inputLabel}>Article Title *</div>
-        <textarea          
+        <textarea
           value={title!}
           id="articleSummary"
           placeholder="Type article summary here..."

@@ -5,7 +5,7 @@ import { NewsForm } from "../../components/NewsForm/NewsForm";
 import {
   updateTitle,
   updateDate,
-  updateUrl
+  updateUrl,
 } from "../EditNewsForm/editNewsFormSlice";
 
 import { useFetchArticleData } from "../../hooks/useFetchArticleData";
@@ -33,10 +33,10 @@ export const EditNewsForm = () => {
   const { data, isLoading, fetchArticle } = useFetchArticleData(url);
 
   useEffect(() => {
-    if (data?.title) {        
-        dispatch(updateTitle({ title: data.title }));
+    if (data?.title) {
+      dispatch(updateTitle({ title: data.title }));
     }
-  },[data?.title, dispatch])
+  }, [data?.title, dispatch]);
 
   useEffect(() => {
     if (initialNewsItem?.url) {
@@ -62,19 +62,25 @@ export const EditNewsForm = () => {
     if (!title) {
       setErrorTitle("Please type a title");
       return;
-    }  
+    }
     if (url && date && title && selectedItemId) {
-      store.dispatch(editNews({
-        url,
-        companyId: getCompanyId(),
-        date,
-        title,
-        newsId:selectedItemId
-      })).then(() => {
-        store.dispatch(
-          getCompanyNews({
-            companyId: getCompanyId()})); 
-      })
+      store
+        .dispatch(
+          editNews({
+            url,
+            companyId: getCompanyId(),
+            date,
+            title,
+            newsId: selectedItemId,
+          })
+        )
+        .then(() => {
+          store.dispatch(
+            getCompanyNews({
+              companyId: getCompanyId(),
+            })
+          );
+        });
       // add close handler
       dispatch(closePopup());
     }
@@ -107,7 +113,7 @@ export const EditNewsForm = () => {
       handleSubmit={handleSubmit}
       onArticleTitleFetch={() => {
         if (url) {
-          fetchArticle(url)
+          fetchArticle(url);
         }
       }}
     />
