@@ -17,8 +17,6 @@ function App() {
   return (
     <div className="App">
       {/* Article list feature */}
-      {/* <ItemsList /> */}
-      {/* Article list feature */}
       <h1>COMPANY</h1>
       <Company />
       {/* Add article button feature */}
