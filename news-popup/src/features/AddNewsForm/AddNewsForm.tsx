@@ -7,6 +7,7 @@ import { isValidUrl } from "../../utils/isValidUrl";
 import { useFetchArticleData } from "../../hooks/useFetchArticleData";
 import { postNews } from "./addNewsForm.thunk";
 import { getCompanyNews } from "../Company/Company.thunks";
+import { getCompanyId } from "../../utils/getCompanyId";
 
 export const AddNewsForm = () => {
   const dispatch = useDispatch();
@@ -42,12 +43,12 @@ export const AddNewsForm = () => {
           url,
           date,
           title,
-          companyId: "agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAgL6qvKcJDA",//1net.me
+          companyId: getCompanyId(),
         })         
       ).then(() => {
         store.dispatch(
           getCompanyNews({
-            companyId: "agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAgL6qvKcJDA"})); 
+            companyId: getCompanyId()})); 
       })
 
       dispatch(updateUrl({url: ""}));  

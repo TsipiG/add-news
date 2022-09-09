@@ -11,6 +11,7 @@ import {
 import { useFetchArticleData } from "../../hooks/useFetchArticleData";
 import { isValidUrl } from "../../utils/isValidUrl";
 import { editNews, getCompanyNews } from "../Company/Company.thunks";
+import { getCompanyId } from "../../utils/getCompanyId";
 
 export const EditNewsForm = () => {
   const dispatch = useDispatch();
@@ -65,14 +66,14 @@ export const EditNewsForm = () => {
     if (url && date && title && selectedItemId) {
       store.dispatch(editNews({
         url,
-        companyId:"agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAgL6qvKcJDA",
+        companyId: getCompanyId(),
         date,
         title,
         newsId:selectedItemId
       })).then(() => {
         store.dispatch(
           getCompanyNews({
-            companyId: "agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAgL6qvKcJDA"})); 
+            companyId: getCompanyId()})); 
       })
       // add close handler
       dispatch(closePopup());
