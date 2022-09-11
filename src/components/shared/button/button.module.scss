@@ -30,7 +30,12 @@
   &.primary {
     background-color: var(--primary-button);
   }
-
+  &.link {
+    background-color: transparent;
+    color: var(--blue);
+    padding: 0 1rem;
+    height: auto;
+  }
   &.secondary {
     background-color: var(--secondary-button);
 

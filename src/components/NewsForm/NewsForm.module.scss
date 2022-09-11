@@ -28,6 +28,8 @@ input {
   color: var(--gray);
   font-size: 14px;
   font-family: var(--font-light);
+  display: flex;
+  justify-content: space-between;
 }
 .errorLabel {
   line-height: 1.4;
