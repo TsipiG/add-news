@@ -5,6 +5,7 @@ import styles from "./NewsForm.module.scss";
 import DatePicker from "react-datepicker";
 import { Button } from "../shared/Button/Button";
 import { sub } from "date-fns";
+import { ButtonType } from "../../types";
 
 interface Props {
   isLoading?: boolean;
@@ -46,7 +47,11 @@ export const NewsForm = ({
         <div className={styles.inputLabel}>
           News Item URL *
           {onArticleTitleFetch ? (
-            <button onClick={onArticleTitleFetch}>Fetch article title</button>
+            <Button
+              type={ButtonType.LINK}
+              text="Fetch article title"
+              onClick={onArticleTitleFetch}
+            ></Button>
           ) : null}
         </div>
         <input

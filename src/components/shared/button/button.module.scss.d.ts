@@ -6,3 +6,4 @@ export const loadingContainer: string;
 export const primary: string;
 export const secondary: string;
 export const text: string;
+export const link: string;
