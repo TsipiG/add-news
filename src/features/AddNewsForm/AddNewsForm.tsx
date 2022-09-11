@@ -93,15 +93,3 @@ export const AddNewsForm = () => {
     />
   );
 };
-
-// addNewsItem({
-//   url,
-//   date,
-//   title
-// })
-// postNews({
-//   url,
-//   date,
-//   title,
-//   companyId: "agxzfmlsbGlzdHNpdGVyGAsSC05ld19Db21wYW55GICAwP_k4J4KDA", //2Drops
-// })
