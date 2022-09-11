@@ -3,7 +3,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import React from "react";
 import styles from "./NewsForm.module.scss";
 import DatePicker from "react-datepicker";
-import { Button } from "../shared/button/button";
+import { Button } from "../shared/Button/Button";
 import { sub } from "date-fns";
 
 interface Props {

@@ -1,7 +1,6 @@
 import React from "react";
-// import  LoadingIndicator from 'stream-chat-react'
 import { ButtonProps, ButtonType } from "../../../types";
-import styles from "./button.module.scss";
+import styles from "./Button.module.scss";
 
 export const Button = (props: ButtonProps) => {
   const {
