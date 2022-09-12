@@ -11,7 +11,7 @@ interface Payload {
 export const postNews = createAsyncThunk(
   "addNewsForm/postNews",
   async ({ companyId, date, title, url }: Payload, thunk) => {
-    let formatedDate = format(new Date(date), "dd/MM/yyyy");
+    const formatedDate = format(new Date(date), "dd/MM/yyyy");
     try {
       const response = await client.post(`/startups/${companyId}/news`, {
         news_summary: title,
