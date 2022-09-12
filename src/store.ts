@@ -1,6 +1,6 @@
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { addNewsFormSlice } from "./features/AddNewsForm/addNewsForm.slice";
-import { editNewsFormSlice } from "./features/EditNewsForm/editNewsFormSlice";
+import { editNewsFormSlice } from "./features/EditNewsForm/editNewsForm.slice";
 import { companyNewsSlice } from "./features/Company/Company.slice";
 
 type PopupType = "new" | "edit";

@@ -2,17 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { closePopup, State, store } from "../../store";
 import { NewsForm } from "../../components/NewsForm/NewsForm";
-import {
-  updateTitle,
-  updateDate,
-  updateUrl,
-} from "../EditNewsForm/editNewsFormSlice";
-
+import { updateTitle, updateDate, updateUrl } from "./editNewsForm.slice";
 import { useFetchArticleData } from "../../hooks/useFetchArticleData";
 import { isValidUrl } from "../../utils/isValidUrl";
 import { editNews, getCompanyNews } from "../Company/Company.thunks";
 import { getCompanyId } from "../../utils/getCompanyId";
-import { format } from "date-fns";
 
 export const EditNewsForm = () => {
   const dispatch = useDispatch();

@@ -28,6 +28,10 @@ export const AddNewsForm = () => {
   const handleSubmit = () => {
     if (!url) {
       setErrorUrl("Please paste a valid url");
+      if (!title) {
+        setErrorTitle("Please type a title");
+        return;
+      }
       return;
     }
     if (!isValidUrl(url)) {

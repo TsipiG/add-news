@@ -2,7 +2,7 @@ import { format } from "date-fns";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { State, openPopup, store } from "../../store";
-import { editNewsForm } from "../EditNewsForm/editNewsFormSlice";
+import { editNewsForm } from "../EditNewsForm/editNewsForm.slice";
 import { getCompanyNews } from "./Company.thunks";
 import deleteIcon from "../../assets/svg/delete-icon.svg";
 import editIcon from "../../assets/svg/edit-icon.svg";

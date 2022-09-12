@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import styles from "./NewsForm.module.scss";
 import DatePicker from "react-datepicker";
 import { Button } from "../shared/Button/Button";
-import { sub, format } from "date-fns";
+import { sub } from "date-fns";
 import { ButtonType } from "../../types";
 
 interface Props {
