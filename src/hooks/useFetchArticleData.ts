@@ -11,13 +11,19 @@ export const useFetchArticleData = (url: string | null | undefined) => {
 
   const fetchArticle = async (url: string) => {
     setData(null);
-    return axios.get(url).then((response) => {
-      setIsLoading(false);
-      const title = parseTitleFromHTML(response.data);
-      if (title) {
-        setData({ title });
-      }
-    });
+
+    return axios
+      .get(url)
+      .then((response) => {
+        setIsLoading(false);
+        const title = parseTitleFromHTML(response.data);
+        if (title) {
+          setData({ title });
+        }
+      })
+      .catch((error) => {
+        console.log("Can not fetch Title from given URL");
+      });
   };
 
   return { data, isLoading, fetchArticle };
