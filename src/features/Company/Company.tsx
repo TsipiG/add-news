@@ -57,7 +57,7 @@ export const Company = () => {
               <a href={item.url} className="news-wrap">
                 <div className={styles.newsTitle}>
                   <span>{new URL(item.url).hostname}</span> -{" "}
-                  <span>{format(new Date(item.date), "dd/MM/yyyy")}</span>
+                  <span>{format(new Date(item.date), "MMM dd yyyy")}</span>
                 </div>
                 <div>{item.title}</div>
               </a>
