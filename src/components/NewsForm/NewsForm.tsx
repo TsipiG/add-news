@@ -90,7 +90,6 @@ export const NewsForm = ({
         />
         {errorTitle && <div className={styles.errorLabel}>{errorTitle}</div>}
       </div>
-      <div className={styles.inputContainer}></div>
       <div className={styles.btnsContainer}>
         <Button text="save" onClick={handleSubmit} />
       </div>

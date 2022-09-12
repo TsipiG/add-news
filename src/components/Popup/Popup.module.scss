@@ -2,7 +2,7 @@
 @import "../../styles/font-face.scss";
 
 .overlayBackground {
-  position: absolute; //for its relative parent tp
+  position: absolute; 
   top: 0;
   left: 0;
   bottom: 0;
@@ -12,7 +12,7 @@
 }
 
 .overlay {
-  position: fixed; //for viewport
+  position: fixed; 
   top: 0;
   left: 0;
   bottom: 0;
@@ -56,77 +56,8 @@
   width: 100%;
   justify-content: space-between;
 }
-.popupTitle {
-  font-size: 1.8rem;
-  font-family: var(--font-medium);
-  color: var(--black);
-  font-weight: bold;
-}
+
 .closeBtn {
   border: none;
   background-color: transparent;
-}
-.inputContainer {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-}
-input {
-  font-family: var(--font-normal);
-  color: var(--black);
-  font-size: 14px;
-  padding-left: 10px;
-  margin-top: 5px;
-  outline: none;
-  border: 1px solid #e3e9ed;
-  height: 34px;
-  &::placeholder {
-    color: var(--placeholder-input);
-    font-style: italic;
-    font-family: var(--font-light);
-  }
-}
-.inputLabel {
-  margin-top: 30px;
-  color: var(--gray);
-  font-size: 14px;
-  font-family: var(--font-light);
-}
-.errorLabel {
-  line-height: 1.4;
-  font-size: 12px;
-  font-family: var(--font-light);
-  color: var(--bright-red);
-}
-
-textarea {
-  font-family: var(--font-normal);
-  color: var(--black);
-  font-size: 14px;
-  padding-left: 10px;
-  margin-top: 5px;
-  outline: none;
-  border: 1px solid #e3e9ed;
-  height: 64px;
-  &::placeholder {
-    color: var(--placeholder-input);
-    font-style: italic;
-    font-family: var(--font-light);
-  }
-}
-.btnsContainer {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 30px;
-}
-.saveBtn {
-  border: none;
-  min-width: 85px;
-  height: 40px;
-  background-color: var(--primary-button);
-  &:hover {
-    background-color: var(--dark-yellow);
-  }
 }
