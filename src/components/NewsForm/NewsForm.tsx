@@ -1,5 +1,5 @@
 import "react-datepicker/dist/react-datepicker.css";
-
+import "./datepicker-style.css";
 import React, { useState } from "react";
 import styles from "./NewsForm.module.scss";
 import DatePicker from "react-datepicker";
