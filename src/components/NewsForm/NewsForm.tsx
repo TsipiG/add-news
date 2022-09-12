@@ -1,10 +1,10 @@
 import "react-datepicker/dist/react-datepicker.css";
 
-import React from "react";
+import React, { useState } from "react";
 import styles from "./NewsForm.module.scss";
 import DatePicker from "react-datepicker";
 import { Button } from "../shared/Button/Button";
-import { sub } from "date-fns";
+import { sub, format } from "date-fns";
 import { ButtonType } from "../../types";
 
 interface Props {
@@ -36,6 +36,7 @@ export const NewsForm = ({
   handleSubmit,
   onArticleTitleFetch,
 }: Props) => {
+  const [startDate, setStartDate] = useState(new Date());
   return (
     <form
       onSubmit={(event) => {
@@ -66,9 +67,10 @@ export const NewsForm = ({
       <div className={styles.inputContainer}>
         <div className={styles.inputLabel}>Date *</div>
         <DatePicker
-          selected={date ? new Date(date) : new Date()}
+          selected={date ? new Date(date) : startDate}
           showPopperArrow={false}
           onChange={(date: Date) => {
+            setStartDate(date);
             handleDateChange(date.toISOString());
           }}
           dateFormat="MMMM d, yyyy"

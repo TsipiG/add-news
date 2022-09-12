@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { client } from "../../client";
+import { format } from "date-fns";
 
 export const getCompanyNews = createAsyncThunk(
   "company/getCompany",
@@ -45,11 +46,12 @@ interface EditNewsArgs {
 export const editNews = createAsyncThunk(
   "company/editNews",
   async ({ companyId, newsId, title, date, url }: EditNewsArgs, thunk) => {
+    const formatedDate = format(new Date(date), "dd/MM/yyyy");
     try {
       await client.post(`/startups/${companyId}/news/${newsId}`, {
         news_summary: title,
         news_url: url,
-        news_date: date,
+        news_date: formatedDate,
       });
     } catch (e) {
       return thunk.rejectWithValue(e);
