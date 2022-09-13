@@ -5,8 +5,8 @@ import { Popup } from "./components/Popup/Popup";
 import { closePopup, openPopup, State } from "./store";
 import { AddNewsForm } from "./features/AddNewsForm/AddNewsForm";
 import { useDispatch, useSelector } from "react-redux";
-import { EditNewsForm } from "./features/EditNewsForm/EditNewsForm";
-import { Company } from "./features/Company/Company";
+// import { EditNewsForm } from "./features/EditNewsForm/EditNewsForm";
+// import { Company } from "./features/Company/Company";
 
 function App() {
   const dispatch = useDispatch();
