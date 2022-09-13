@@ -52,16 +52,11 @@ export const AddNewsForm = () => {
           })
         )
         .then(() => {
-          store.dispatch(
-            getCompanyNews({
-              companyId: getCompanyId(),
-            })
-          );
+          console.log("Post is Done!");
         });
 
       dispatch(updateUrl({ url: "" }));
       dispatch(updateTitle({ title: "" }));
-      dispatch(closePopup());
     }
   };
 
