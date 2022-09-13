@@ -10,8 +10,9 @@ function App() {
   const dispatch = useDispatch();
   const popup = useSelector((state: State) => state.popup);
   const openAddNewsForm = () => dispatch(openPopup({ popup: "new" }));
-  // const closeAddNewsForm = () => dispatch(closePopup());
+  const closeAddNewsFormInner = () => dispatch(closePopup());
   const closeAddNewsForm = () => {
+    closeAddNewsFormInner();
     if (window && window.parent) {
       console.log("we have message sending here", window.parent);
       window.parent.postMessage("close-add-news", "*");
