@@ -10,7 +10,13 @@ function App() {
   const dispatch = useDispatch();
   const popup = useSelector((state: State) => state.popup);
   const openAddNewsForm = () => dispatch(openPopup({ popup: "new" }));
-  const closeAddNewsForm = () => dispatch(closePopup());
+  // const closeAddNewsForm = () => dispatch(closePopup());
+  const closeAddNewsForm = () => {
+    if (window && window.parent) {
+      console.log("we have message sending here", window.parent);
+      window.parent.postMessage("close-add-news", "*");
+    }
+  };
   useEffect(() => {
     openAddNewsForm();
   });
@@ -18,7 +24,11 @@ function App() {
   return (
     <div className="App">
       {/* Add new article feature */}
-      <Popup isOpen={popup.type === "new"} onClose={closeAddNewsForm}>
+      <Popup
+        isOpen={popup.type === "new"}
+        // onClick={window.parent.postMessage("close-add-news", "*")}
+        onClose={closeAddNewsForm}
+      >
         <AddNewsForm />
       </Popup>
     </div>
