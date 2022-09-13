@@ -8,7 +8,6 @@ import { useFetchArticleData } from "../../hooks/useFetchArticleData";
 import { postNews } from "./addNewsForm.thunk";
 import { getCompanyNews } from "../Company/Company.thunks";
 import { getCompanyId } from "../../utils/getCompanyId";
-import { format } from "date-fns";
 
 export const AddNewsForm = () => {
   const dispatch = useDispatch();
