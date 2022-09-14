@@ -52,7 +52,9 @@ export const AddNewsForm = () => {
           })
         )
         .then(() => {
-          console.log("Post is Done!");
+          if (window && window.parent) {
+            window.parent.postMessage("close-add-news", "*");
+          }
         });
 
       dispatch(updateUrl({ url: "" }));
